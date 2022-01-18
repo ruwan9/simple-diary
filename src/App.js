@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
+import DiaryEditor from "./DiaryEditor";
 
 function App() {
   return (
     <div>
-      <h1>일기장</h1>
+      <DiaryEditor />
     </div>
   );
 }
