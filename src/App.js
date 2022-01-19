@@ -20,17 +20,20 @@ function App() {
     dataId.current += 1;
     setData([newItem, ...data]);
   };
-  const onDelete = (targetId) => {
+  const onRemove = (targetId) => {
     // console.log(targetId);
     const newDiaryList = data.filter((it) => it.id !== targetId);
     // console.log(newDiaryList);
     setData(newDiaryList);
   };
+  const onEdit = (targetId, newContent) => {
+    setData(data.map((it) => (it.id === targetId ? { ...it, content: newContent } : it)));
+  };
 
   return (
     <div>
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList onDelete={onDelete} itemList={data} />
+      <DiaryList onEdit={onEdit} onRemove={onRemove} itemList={data} />
     </div>
   );
 }
