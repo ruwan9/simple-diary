@@ -70,4 +70,4 @@ function DiaryItem({ id, author, content, emotion, created_date, onRemove, onEdi
   );
 }
 
-export default DiaryItem;
+export default React.memo(DiaryItem);
