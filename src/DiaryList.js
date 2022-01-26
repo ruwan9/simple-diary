@@ -16,4 +16,8 @@ function DiaryList({ itemList, onRemove, onEdit }) {
   );
 }
 
+DiaryList.defaultProps = {
+  diaryList: [],
+};
+
 export default DiaryList;

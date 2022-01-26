@@ -6,8 +6,11 @@ import DiaryList from "./DiaryList";
 function App() {
   const dataId = useRef(0);
   const [data, setData] = useState([]);
+
   const getData = async () => {
-    const res = await fetch("https://jsonplaceholder.typicode.com/comments").then((res) => res.json());
+    const res = await fetch("https://jsonplaceholder.typicode.com/comments").then((res) =>
+      res.json()
+    );
     // console.log(res);
 
     const initData = res.slice(0, 20).map((it) => {
@@ -38,20 +41,23 @@ function App() {
     dataId.current += 1;
     setData((data) => [newItem, ...data]);
   }, []);
+
   const onRemove = useCallback((targetId) => {
     // console.log(targetId);
     // console.log(newDiaryList);
     setData((data) => data.filter((it) => it.id !== targetId));
   }, []);
+
   const onEdit = useCallback((targetId, newContent) => {
     setData((data) => data.map((it) => (it.id === targetId ? { ...it, content: newContent } : it)));
   }, []);
+
   const getDiaryAnalysis = useMemo(() => {
     // console.log("분석 시작");
-
     const goodCount = data.filter((it) => it.emotion >= 3).length;
     const badCount = data.length - goodCount;
     const goodRatio = (goodCount / data.length) * 100;
+
     return { goodCount, badCount, goodRatio };
   }, [data.length]);
   const { goodCount, badCount, goodRatio } = getDiaryAnalysis;
